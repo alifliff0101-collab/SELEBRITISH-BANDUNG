@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root { --pink:#ff2eae; --lime:#b5ed3e; --ink:#171717; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:#fff; color:var(--ink); font-family:'DM Sans',Arial,sans-serif; }
+.topbar {
+  height:58px; padding:0 18px; display:flex; align-items:center; justify-content:space-between;
+  background:var(--pink); border-bottom:2px solid #111;
+}
+.brand { color:#111; text-decoration:none; font:800 15px 'Space Grotesk',sans-serif; letter-spacing:-.7px; }
+.brand span { color:#fff; }
+.top-note { font-size:9px; font-weight:800; letter-spacing:1px; }
+.intro { text-align:center; padding:34px 16px 25px; background:var(--lime); border-bottom:2px solid #111; }
+.eyebrow { margin:0 0 7px; font-size:10px; font-weight:800; letter-spacing:2px; }
+h1 { margin:0; font:700 clamp(27px,7vw,46px)/1 'Space Grotesk',sans-serif; letter-spacing:-2px; }
+.hint { margin:10px 0 0; font-size:13px; font-weight:600; }
+.reader { width:min(100%,850px); margin:24px auto 42px; padding:0 12px; }
+.book-top { display:flex; justify-content:space-between; align-items:center; margin:0 2px 10px; }
+.book-label { font-size:10px; font-weight:800; letter-spacing:1.7px; }
+.page-count { font-size:11px; font-weight:800; font-variant-numeric:tabular-nums; }
+.book-viewport {
+  overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  scrollbar-width:none; border:2px solid #111; background:#fff; box-shadow:7px 7px 0 #111;
+  touch-action:pan-x pan-y; overscroll-behavior-x:contain;
+}
+.book-viewport::-webkit-scrollbar { display:none; }
+.book-pages { display:flex; align-items:stretch; }
+.book-page { flex:0 0 100%; width:100%; min-width:100%; margin:0; scroll-snap-align:start; scroll-snap-stop:always; background:#fff; }
+.book-page img { display:block; width:100%; height:auto; }
+.book-page figcaption {
+  min-height:34px; padding:9px 12px; border-top:1px solid #ddd; text-align:center;
+  font-size:10px; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+}
+.reader-controls { display:flex; align-items:center; gap:14px; margin:22px 2px 0; }
+.nav-button {
+  width:44px; height:40px; flex:0 0 44px; border:2px solid #111; border-radius:0;
+  background:var(--pink); color:#111; font-size:23px; font-weight:800; cursor:pointer;
+}
+.nav-button:disabled { opacity:.35; cursor:default; }
+.progress { height:7px; flex:1; background:#eee; border:1px solid #111; overflow:hidden; }
+.progress span { display:block; width:16.6667%; height:100%; background:var(--lime); transition:width .25s ease; }
+.swipe-hint { margin:12px 0 0; text-align:center; font-size:11px; color:#666; font-weight:600; }
+footer { padding:24px 18px 30px; display:flex; justify-content:space-between; align-items:center; gap:12px; background:#111; color:#fff; font-size:11px; font-weight:800; }
+footer p { margin:0; letter-spacing:1px; }
+footer a { color:var(--lime); text-decoration:none; }
+@media (min-width:700px) {
+  .topbar { padding:0 max(24px,calc((100vw - 850px)/2)); }
+  .reader { padding:0 24px; }
+  .book-page img { max-height:72vh; width:100%; object-fit:contain; background:#f8f8f8; }
+}
