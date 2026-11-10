@@ -44,11 +44,25 @@ h1 { margin:0; font:700 clamp(27px,7vw,46px)/1 'Space Grotesk',sans-serif; lette
 footer { padding:24px 18px 30px; display:flex; justify-content:space-between; align-items:center; gap:12px; background:#111; color:#fff; font-size:11px; font-weight:800; }
 footer p { margin:0; letter-spacing:1px; }
 footer a { color:var(--lime); text-decoration:none; }
+
 @media (min-width:700px) {
-  .topbar { padding:0 max(24px,calc((100vw - 850px)/2)); }
-  .reader { padding:0 24px; }
-  .book-page img { max-height:72vh; width:100%; object-fit:contain; background:#f8f8f8; }
+  .topbar {
+    padding: 0 max(24px, calc((100vw - 850px)/2));
+  }
+
+  .reader {
+    padding: 0 24px;
+  }
+
+  .book-page img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    background: #f8f8f8;
+  }
 }
+
 .medium-page {
   display: flex;
   flex-direction: column;
@@ -83,4 +97,200 @@ footer a { color:var(--lime); text-decoration:none; }
   color: #171717;
   text-decoration: none;
   font-weight: 800;
+}
+
+/* MUSIC PLAYER */
+.music-player {
+  width: min(100% - 24px, 400px);
+  margin: 15px auto 20px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  border: 1.5px solid #171717;
+  box-shadow: 3px 3px 0 #171717;
+}
+
+.music-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.music-icon {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  background: #ff2eae;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.music-info strong,
+.music-info small {
+  display: block;
+}
+
+.music-info strong {
+  font-size: 12px;
+}
+
+.music-info small {
+  margin-top: 3px;
+  font-size: 10px;
+  color: #666;
+}
+
+#musicToggle {
+  padding: 8px 12px;
+  border: 1.5px solid #171717;
+  background: #b5ed3e;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#musicVolume {
+  width: 65px;
+  accent-color: #ff2eae;
+}
+
+@media (max-width: 400px) {
+  .music-player {
+    gap: 7px;
+    padding: 10px;
+  }
+
+  #musicVolume {
+    width: 48px;
+  }
+}
+
+/* =================================
+   RESPONSIVE WEBSITE AU
+================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.reader {
+  width: 100%;
+  max-width: 720px;
+  margin: 24px auto 42px;
+  padding: 0 16px;
+}
+
+.book-viewport {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.book-pages {
+  display: flex;
+  align-items: flex-start;
+}
+
+.book-page {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  align-self: flex-start;
+}
+
+.book-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+/* MUSIC PLAYER */
+.music-player {
+  width: min(100%, 400px);
+  max-width: 100%;
+  margin: 15px auto 20px;
+}
+
+/* LAPTOP */
+@media (min-width: 1024px) {
+  .reader {
+    max-width: 680px;
+  }
+
+  .book-page img {
+    max-height: 75vh;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+/* TABLET */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .reader {
+    max-width: 650px;
+    padding: 0 18px;
+  }
+}
+
+/* HP */
+@media (max-width: 600px) {
+  .reader {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+    margin: 18px auto 30px;
+  }
+
+  .book-viewport {
+    box-shadow: 4px 4px 0 #111;
+  }
+
+  .book-page img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  .music-player {
+    width: 100%;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .reader-controls {
+    gap: 9px;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 38px;
+    flex-basis: 40px;
+  }
+
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .top-note {
+    font-size: 8px;
+  }
+
+  .intro {
+    padding: 28px 12px 22px;
+  }
+
+  h1 {
+    font-size: clamp(25px, 8vw, 36px);
+  }
 }
