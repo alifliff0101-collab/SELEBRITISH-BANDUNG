@@ -37,3 +37,87 @@
   });
   update();
 })();
+
+// BACKGROUND MUSIC - SELEBRITIS
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+const musicVolume = document.getElementById("musicVolume");
+const nextPage = document.getElementById("nextPage");
+const prevPage = document.getElementById("prevPage");
+
+if (bgMusic && musicToggle) {
+  bgMusic.volume = 0.5;
+
+  let musicStarted = false;
+
+  async function playMusic() {
+    try {
+      await bgMusic.play();
+      musicStarted = true;
+      musicToggle.textContent = "Ⅱ Pause";
+    } catch (error) {
+      musicToggle.textContent = "▶ Play";
+    }
+  }
+
+  musicToggle.addEventListener("click", async () => {
+    if (bgMusic.paused) {
+      await playMusic();
+    } else {
+      bgMusic.pause();
+      musicToggle.textContent = "▶ Play";
+    }
+  });
+
+  // Mulai musik saat pengunjung membalik halaman
+  async function startMusicOnFlip() {
+    if (!musicStarted && bgMusic.paused) {
+      await playMusic();
+    }
+  }
+
+  nextPage?.addEventListener("click", startMusicOnFlip);
+  prevPage?.addEventListener("click", startMusicOnFlip);
+
+  // Pengaturan volume
+  musicVolume?.addEventListener("input", (event) => {
+    bgMusic.volume = Number(event.target.value);
+  });
+
+  bgMusic.addEventListener("ended", () => {
+    musicToggle.textContent = "▶ Play";
+  });
+}
+
+// MENYESUAIKAN TINGGI BUKU DENGAN HALAMAN AKTIF
+const viewport = document.getElementById("bookViewport");
+const pagesContainer = document.getElementById("bookPages");
+
+if (viewport && pagesContainer) {
+  function updateBookHeight() {
+    const pageWidth = viewport.clientWidth;
+
+    if (!pageWidth) return;
+
+    const index = Math.round(viewport.scrollLeft / pageWidth);
+    const currentPage = pagesContainer.children[index];
+
+    if (currentPage) {
+      viewport.style.height = currentPage.offsetHeight + "px";
+    }
+  }
+
+  viewport.addEventListener("scroll", () => {
+    requestAnimationFrame(updateBookHeight);
+  });
+
+  window.addEventListener("resize", updateBookHeight);
+
+  pagesContainer.querySelectorAll("img").forEach(img => {
+    img.addEventListener("load", updateBookHeight);
+  });
+
+  window.addEventListener("load", updateBookHeight);
+
+  updateBookHeight();
+}
